@@ -1,6 +1,7 @@
 package datastructures.trees;
 
 // TODO: implement remove function
+// TODO: // TODO: write traverse function using recursion
 public class BinarySearchTree {
 
     private Node root;
