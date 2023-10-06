@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 // TODO: hard algorithm, should be rechecked
+// TODO: implement Quick Sort???
 public class MergeSort {
 
     public List<Integer> mergeSort(List<Integer> array) {
