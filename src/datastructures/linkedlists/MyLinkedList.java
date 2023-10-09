@@ -2,14 +2,9 @@ package datastructures.linkedlists;
 
 public class MyLinkedList {
 
-    // TODO: add append and prepend functions
     // TODO: add length parameter
     // TODO: add reverse for Singly Linked List
     // TODO: separate somehow Singly Linked List and Doubly Linked List
-
-    // headtail
-    // head tail
-    // head middle tail
 
     private Node head;
     private Node tail;
