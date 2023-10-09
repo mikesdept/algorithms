@@ -73,6 +73,20 @@ public class SinglyLinkedList {
         }
     }
 
+    public void reverse() {
+        Node node = headNode;
+        Node next = node.getNext();
+        node.setNext(null);
+        tailNode = node;
+        while (next != null) {
+            Node nextTemp = next.getNext();
+            next.setNext(node);
+            node = next;
+            next = nextTemp;
+        }
+        headNode = node;
+    }
+
     public void printLinkedList() {
         System.out.println("Print Linked List from head to tail");
         Node node = headNode;
@@ -108,6 +122,8 @@ public class SinglyLinkedList {
         linkedList.remove(0);
         linkedList.remove(7);
         linkedList.printLinkedList(); // 6 4 3 8 2 5 11
+        linkedList.reverse();
+        linkedList.printLinkedList(); // 11 5 2 8 3 4 6
     }
 
 }
