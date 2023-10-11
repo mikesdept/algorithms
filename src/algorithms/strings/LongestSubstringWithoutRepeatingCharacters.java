@@ -7,21 +7,19 @@ public class LongestSubstringWithoutRepeatingCharacters {
 
     public int lengthOfLongestSubstringOptimalSolution(String s) {
         int leftIndex = 0;
-        int rightIndex = 0;
         int max = 0;
         if (s == null) {
             return max;
         }
         Map<Character, Integer> map = new HashMap<>();
-        for (int i = 0; i < s.length(); i++) {
-            rightIndex = i;
-            if (!map.containsKey(s.charAt(i))) {
-                map.put(s.charAt(i), i);
+        for (int rightIndex = 0; rightIndex < s.length(); rightIndex++) {
+            if (!map.containsKey(s.charAt(rightIndex))) {
+                map.put(s.charAt(rightIndex), rightIndex);
             } else {
-                if (map.get(s.charAt(i)) >= leftIndex) {
-                    leftIndex = map.get(s.charAt(i)) + 1;
+                if (map.get(s.charAt(rightIndex)) >= leftIndex) {
+                    leftIndex = map.get(s.charAt(rightIndex)) + 1;
                 }
-                map.put(s.charAt(i), i);
+                map.put(s.charAt(rightIndex), rightIndex);
             }
             int maxCandidate = rightIndex - leftIndex + 1;
             if (maxCandidate > max) {
