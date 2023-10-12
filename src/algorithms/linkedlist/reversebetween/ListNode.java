@@ -1,4 +1,4 @@
-package algorithms.linkedlist;
+package algorithms.linkedlist.reversebetween;
 
 public class ListNode {
 
