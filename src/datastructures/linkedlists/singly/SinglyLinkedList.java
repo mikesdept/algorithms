@@ -74,17 +74,16 @@ public class SinglyLinkedList {
     }
 
     public void reverse() {
-        Node node = headNode;
-        Node next = node.getNext();
-        node.setNext(null);
-        tailNode = node;
-        while (next != null) {
-            Node nextTemp = next.getNext();
-            next.setNext(node);
-            node = next;
-            next = nextTemp;
+        Node previous = null;
+        Node current = headNode;
+        tailNode = current;
+        while (current != null) {
+            Node next = current.getNext();
+            current.setNext(previous);
+            previous = current;
+            current = next;
         }
-        headNode = node;
+        headNode = previous;
     }
 
     public void printLinkedList() {
