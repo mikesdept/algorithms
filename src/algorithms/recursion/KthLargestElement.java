@@ -1,5 +1,6 @@
 package algorithms.recursion;
 
+// Solution is using Quick Sort plus Quick Selection (Optimal Solution)
 public class KthLargestElement {
 
     public int findKthLargest(int[] nums, int k) {
