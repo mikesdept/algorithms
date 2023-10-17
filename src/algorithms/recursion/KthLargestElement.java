@@ -17,22 +17,17 @@ public class KthLargestElement {
         int indexToFind = nums.length - k;
         int left = 0;
         int right = nums.length - 1;
-        sortArrayToFindKthLargest(nums, left, right, indexToFind);
-        return nums[nums.length - k];
+        return sortArrayToFindKthLargest(nums, left, right, indexToFind);
     }
 
     private int sortArrayToFindKthLargest(int[] array, int left, int right, int indexToFind) {
-        if (left < right) {
-            int partitionIndex = partition(array, left, right);
-            if (indexToFind == partitionIndex) {
-                return array[indexToFind];
-            } else if (indexToFind < partitionIndex) {
-                return sortArrayToFindKthLargest(array, left, partitionIndex - 1, indexToFind);
-            } else {
-                return sortArrayToFindKthLargest(array, partitionIndex + 1, right, indexToFind);
-            }
+        int partitionIndex = partition(array, left, right);
+        if (indexToFind == partitionIndex) {
+            return array[indexToFind];
+        } else if (indexToFind < partitionIndex) {
+            return sortArrayToFindKthLargest(array, left, partitionIndex - 1, indexToFind);
         } else {
-            return -1;
+            return sortArrayToFindKthLargest(array, partitionIndex + 1, right, indexToFind);
         }
     }
 
