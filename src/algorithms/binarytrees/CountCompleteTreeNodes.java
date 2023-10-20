@@ -2,23 +2,6 @@ package algorithms.binarytrees;
 
 public class CountCompleteTreeNodes {
 
-    // notes
-    /*
-    level = 4
-    possible count of nodes at the latest level = level * 2 = 8
-    left = 0
-    right = 7
-    middle = 4
-    root -> 0, 1, 2, 3, 4, 5, 6, 7
-    8 / 2 -> 4 >= 4 -> right
-    right -> 4, 5, 6, 7
-    11 / 2 -> 4 >= 6 -> left
-    left -> 4, 5
-    9 / 2 -> 4 >= 5 -> left
-    left -> 4
-    left = 0, right = 3
-     */
-
     //             1
     //         2        3
     //      4     5    6   7
