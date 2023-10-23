@@ -9,7 +9,7 @@ public class ValidateBinarySearchTree {
         return isValidBST(node, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
-    public boolean isValidBST(TreeNode node, int min, int max) {
+    private boolean isValidBST(TreeNode node, int min, int max) {
         if (node.val <= min || node.val >= max) {
             return false;
         }
