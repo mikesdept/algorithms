@@ -6,11 +6,11 @@ public class ValidateBinarySearchTree {
         if (node == null) {
             return true;
         }
-        return isValidBST(node, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        return isValidBST(node, null, null);
     }
 
-    private boolean isValidBST(TreeNode node, int min, int max) {
-        if (node.val <= min || node.val >= max) {
+    private boolean isValidBST(TreeNode node, Integer min, Integer max) {
+        if ((min != null && node.val <= min) || (max != null && node.val >= max)) {
             return false;
         }
         if (node.left != null) {
