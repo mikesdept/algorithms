@@ -1,5 +1,8 @@
 package algorithms.dynamicprogramming;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MinimumCostOfClimbingStairs {
 
     public int minCostClimbingStairs(int[] cost) {
@@ -8,14 +11,18 @@ public class MinimumCostOfClimbingStairs {
             costWithZeroInTheEnd[i] = cost[i];
         }
         costWithZeroInTheEnd[cost.length] = 0;
-        return recursiveSolution(costWithZeroInTheEnd, cost.length);
+        Map<Integer, Integer> map = new HashMap<>();
+        return recursiveSolution(costWithZeroInTheEnd, cost.length, map);
     }
 
-    private int recursiveSolution(int[] cost, int n) {
+    private int recursiveSolution(int[] cost, int n, Map<Integer, Integer> map) {
         if (n == 0 || n == 1) {
             return cost[n];
+        } else if (map.containsKey(n)) {
+            return map.get(n);
         } else {
-            return cost[n] + Math.min(recursiveSolution(cost, n - 1), recursiveSolution(cost, n - 2));
+            map.put(n, cost[n] + Math.min(recursiveSolution(cost, n - 1, map), recursiveSolution(cost, n - 2, map)));
+            return map.get(n);
         }
     }
 
