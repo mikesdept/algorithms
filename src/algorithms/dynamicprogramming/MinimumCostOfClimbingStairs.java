@@ -26,6 +26,36 @@ public class MinimumCostOfClimbingStairs {
         }
     }
 
+    public int bottomToTopSolution(int[] cost) {
+        Map<Integer, Integer> map = new HashMap<>();
+        if (cost.length < 2) {
+            return 0;
+        }
+        for (int i = 0; i < cost.length; i++) {
+            if (i < 2) {
+                map.put(i, cost[i]);
+            } else {
+                map.put(i, cost[i] + Math.min(map.get(i - 1), map.get(i - 2)));
+            }
+        }
+        return Math.min(map.get(cost.length - 1), map.get(cost.length - 2));
+    }
+
+    public int bottomToTopOptimizedSolution(int[] cost) {
+        Map<Integer, Integer> map = new HashMap<>();
+        if (cost.length < 2) {
+            return 0;
+        }
+        int first = cost[0];
+        int second = cost[1];
+        for (int i = 2; i < cost.length; i++) {
+            int current = cost[i] + Math.min(first, second);
+            first = second;
+            second = current;
+        }
+        return Math.min(first, second);
+    }
+
     public static void main(String[] args) {
         MinimumCostOfClimbingStairs minimumCostOfClimbingStairs = new MinimumCostOfClimbingStairs();
         System.out.println(minimumCostOfClimbingStairs.minCostClimbingStairs(new int[]{}));
@@ -33,6 +63,25 @@ public class MinimumCostOfClimbingStairs {
         System.out.println(minimumCostOfClimbingStairs.minCostClimbingStairs(new int[]{20, 15}));
         System.out.println(minimumCostOfClimbingStairs.minCostClimbingStairs(new int[]{15, 20}));
         System.out.println(minimumCostOfClimbingStairs.minCostClimbingStairs(new int[]{20, 15, 30, 5}));
+        System.out.println(minimumCostOfClimbingStairs.minCostClimbingStairs(new int[]{1, 2, 3}));
+
+        System.out.println("==========");
+
+        System.out.println(minimumCostOfClimbingStairs.bottomToTopSolution(new int[]{}));
+        System.out.println(minimumCostOfClimbingStairs.bottomToTopSolution(new int[]{20}));
+        System.out.println(minimumCostOfClimbingStairs.bottomToTopSolution(new int[]{20, 15}));
+        System.out.println(minimumCostOfClimbingStairs.bottomToTopSolution(new int[]{15, 20}));
+        System.out.println(minimumCostOfClimbingStairs.bottomToTopSolution(new int[]{20, 15, 30, 5}));
+        System.out.println(minimumCostOfClimbingStairs.bottomToTopSolution(new int[]{1, 2, 3}));
+
+        System.out.println("==========");
+
+        System.out.println(minimumCostOfClimbingStairs.bottomToTopOptimizedSolution(new int[]{}));
+        System.out.println(minimumCostOfClimbingStairs.bottomToTopOptimizedSolution(new int[]{20}));
+        System.out.println(minimumCostOfClimbingStairs.bottomToTopOptimizedSolution(new int[]{20, 15}));
+        System.out.println(minimumCostOfClimbingStairs.bottomToTopOptimizedSolution(new int[]{15, 20}));
+        System.out.println(minimumCostOfClimbingStairs.bottomToTopOptimizedSolution(new int[]{20, 15, 30, 5}));
+        System.out.println(minimumCostOfClimbingStairs.bottomToTopOptimizedSolution(new int[]{1, 2, 3}));
     }
 
 }
