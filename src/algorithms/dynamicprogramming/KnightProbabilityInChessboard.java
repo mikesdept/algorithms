@@ -19,6 +19,7 @@ public class KnightProbabilityInChessboard {
         return result;
     }
 
+    // TODO: should be another solution because of time complexity is not so good for recursive solution
     public static void main(String[] args) {
         KnightProbabilityInChessboard knightProbabilityInChessboard = new KnightProbabilityInChessboard();
         System.out.println(knightProbabilityInChessboard.knightProbabilityRecursive(6, 2, 2, 2));
