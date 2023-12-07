@@ -1,4 +1,4 @@
-package algorithms.interfacedesign;
+package algorithms.interfacedesign.monarchy;
 
 import java.util.ArrayList;
 import java.util.List;
