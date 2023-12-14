@@ -6,7 +6,7 @@ public class BubbleSort {
 
     public int[] bubbleSort(int[] array) {
         if (array == null) {
-            return array;
+            return null;
         }
         int checkedLength = array.length;
         while (checkedLength >= 2) {
