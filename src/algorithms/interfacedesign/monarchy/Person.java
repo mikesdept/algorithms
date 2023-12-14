@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Person {
 
-    private String name;
+    private final String name;
     private boolean isAlive;
     private List<Person> children;
 
