@@ -5,7 +5,7 @@ import java.util.Map;
 
 class Trie {
 
-    private Letter letter;
+    private final Letter letter;
 
     public Trie() {
         letter = new Letter();
