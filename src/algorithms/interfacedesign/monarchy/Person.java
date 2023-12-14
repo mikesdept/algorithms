@@ -7,7 +7,7 @@ public class Person {
 
     private final String name;
     private boolean isAlive;
-    private List<Person> children;
+    private final List<Person> children;
 
     public Person(String name) {
         this.name = name;
