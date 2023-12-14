@@ -73,11 +73,11 @@ class Trie {
         System.out.println(trie.search("app")); // true
     }
 
-    public class Letter {
+    public static class Letter {
 
-        private Character character;
+        private final Character character;
         private boolean isEnd;
-        private Map<Character, Letter> letters;
+        private final Map<Character, Letter> letters;
 
         public Letter() {
             this.character = null;
