@@ -7,7 +7,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class Monarchy {
 
-    private Person rootPerson;
+    private final Person rootPerson;
 
     public Monarchy(String name) {
         rootPerson = new Person(name);
