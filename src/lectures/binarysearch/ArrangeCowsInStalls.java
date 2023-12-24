@@ -1,4 +1,4 @@
-package lectures.cows;
+package lectures.binarysearch;
 
 public class ArrangeCowsInStalls {
 

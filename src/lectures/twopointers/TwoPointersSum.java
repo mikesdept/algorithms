@@ -1,4 +1,4 @@
-package lectures.twopointerssum;
+package lectures.twopointers;
 
 public class TwoPointersSum {
 

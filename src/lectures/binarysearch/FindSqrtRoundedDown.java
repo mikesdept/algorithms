@@ -1,4 +1,4 @@
-package lectures.sqrt;
+package lectures.binarysearch;
 
 public class FindSqrtRoundedDown {
 
