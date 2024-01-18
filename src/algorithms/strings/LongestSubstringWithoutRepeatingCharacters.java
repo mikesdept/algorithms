@@ -5,6 +5,24 @@ import java.util.Map;
 
 public class LongestSubstringWithoutRepeatingCharacters {
 
+    public int lengthOfLongestSubstringAnotherOptimalSolution(String s) {
+        if (s == null) {
+            return 0;
+        }
+        int leftIndex = 0;
+        int max = 0;
+        Map<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            char character = s.charAt(i);
+            if (map.containsKey(character) && map.get(character) >= leftIndex) {
+                leftIndex = map.get(character) + 1;
+            }
+            map.put(character, i);
+            max = Math.max(max, i - leftIndex + 1);
+        }
+        return max;
+    }
+
     public int lengthOfLongestSubstringOptimalSolution(String s) {
         int leftIndex = 0;
         int max = 0;
@@ -71,5 +89,13 @@ public class LongestSubstringWithoutRepeatingCharacters {
         System.out.println(longestSubstringWithoutRepeatingCharacters.lengthOfLongestSubstringOptimalSolution("abcdabb")); // 4
         System.out.println(longestSubstringWithoutRepeatingCharacters.lengthOfLongestSubstringOptimalSolution("abcaerfqwawsx")); // 8
         System.out.println(longestSubstringWithoutRepeatingCharacters.lengthOfLongestSubstringOptimalSolution("aabaab!bb")); // 3
+        System.out.println("Another optimal solution");
+        System.out.println(longestSubstringWithoutRepeatingCharacters.lengthOfLongestSubstringAnotherOptimalSolution(null)); // 0
+        System.out.println(longestSubstringWithoutRepeatingCharacters.lengthOfLongestSubstringAnotherOptimalSolution("")); // 0
+        System.out.println(longestSubstringWithoutRepeatingCharacters.lengthOfLongestSubstringAnotherOptimalSolution("a")); // 1
+        System.out.println(longestSubstringWithoutRepeatingCharacters.lengthOfLongestSubstringAnotherOptimalSolution("abcdef")); // 6
+        System.out.println(longestSubstringWithoutRepeatingCharacters.lengthOfLongestSubstringAnotherOptimalSolution("abcdabb")); // 4
+        System.out.println(longestSubstringWithoutRepeatingCharacters.lengthOfLongestSubstringAnotherOptimalSolution("abcaerfqwawsx")); // 8
+        System.out.println(longestSubstringWithoutRepeatingCharacters.lengthOfLongestSubstringAnotherOptimalSolution("aabaab!bb")); // 3
     }
 }
