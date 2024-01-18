@@ -20,8 +20,6 @@ class ReverseString {
         System.out.println(reverseString("H"));
         System.out.println(reverseString(""));
         System.out.println(reverseString(null));
-
-        Integer[] a = new Integer[]{1, 2};
     }
 
 }

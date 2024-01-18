@@ -43,6 +43,55 @@ public class TypedOutStrings {
         return modifyStringBruteForce(s).equals(modifyStringBruteForce(t));
     }
 
+    public boolean backspaceCompare(String s, String t) {
+        int sIndex = s.length();
+        int tIndex = t.length();
+        while (sIndex > 0 || tIndex > 0) {
+            Character sChar = null;
+            Character tChar = null;
+            sIndex--;
+            tIndex--;
+            if (sIndex >= 0) {
+                if (s.charAt(sIndex) == '#') {
+                    int sDecrement = 2;
+                    while (sDecrement > 0) {
+                        sIndex--;
+                        sDecrement--;
+                        if (sIndex >= 0 && s.charAt(sIndex) == '#') {
+                            sDecrement += 2;
+                        }
+                    }
+                    if (sIndex >= 0) {
+                        sChar = s.charAt(sIndex);
+                    }
+                } else {
+                    sChar = s.charAt(sIndex);
+                }
+            }
+            if (tIndex >= 0) {
+                if (t.charAt(tIndex) == '#') {
+                    int tDecrement = 2;
+                    while (tDecrement > 0) {
+                        tIndex--;
+                        tDecrement--;
+                        if (tIndex >= 0 && t.charAt(tIndex) == '#') {
+                            tDecrement += 2;
+                        }
+                    }
+                    if (tIndex >= 0) {
+                        tChar = t.charAt(tIndex);
+                    }
+                } else {
+                    tChar = t.charAt(tIndex);
+                }
+            }
+            if (!((sChar == null && tChar == null) || (sChar != null && tChar != null && sChar.equals(tChar)))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     private String modifyStringBruteForce(String string) {
         StringBuilder modifiedString = new StringBuilder();
         for (int i = 0; i < string.length(); i++) {
@@ -74,6 +123,9 @@ public class TypedOutStrings {
         System.out.println(typedOutStrings.equalsTwoStringsOptimalSolution("ab##", "c#d#")); // true
         System.out.println(typedOutStrings.equalsTwoStringsOptimalSolution("y#fo##f", "y#f#o##f")); // true
         System.out.println(typedOutStrings.equalsTwoStringsOptimalSolution("bxj##tw", "bxj###tw")); // false
+        System.out.println("Another optimal solution below");
+        System.out.println(typedOutStrings.backspaceCompare("y#fo##f", "y#fx#o##f")); // true
+        System.out.println(typedOutStrings.backspaceCompare("bxj##tw", "bxj###tw")); // false
     }
 
 }

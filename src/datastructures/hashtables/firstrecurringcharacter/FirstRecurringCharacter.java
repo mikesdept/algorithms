@@ -8,15 +8,14 @@ public class FirstRecurringCharacter {
     public String getFirstRecurringCharacter(Integer[] array) {
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < array.length; i++) {
-            if (map.get(array[i]) == null) {
-                map.put(array[i], i);
-            } else {
+            if (map.containsKey(array[i])) {
                 return array[i].toString();
+            } else {
+                map.put(array[i], i);
             }
         }
         return "Undefined";
     }
-
 
     public static void main(String[] args) {
         // Given an array = [2, 5, 1, 2, 3, 5, 1, 2, 4]

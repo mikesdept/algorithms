@@ -5,7 +5,7 @@ package algorithms.recursion;
 // Example: N = 8, return 21
 public class Fibonacci {
 
-    // O(2^n) - which is very bad. Because it looks like a tree with each element and grows bigger and bigger
+    // O(2^n) - which is very bad. Because it looks like a tree with each element and grows bigger and bigger with repeated calculations
     public Integer fibonacciRecursive(int n) {
         if (n < 0) {
             return null;

@@ -66,6 +66,9 @@ public class DoublyLinkedList {
             }
             headNode = firstNode;
             length--;
+            if (length <= 1) {
+                tailNode = headNode;
+            }
         } else {
             Node previousNode = headNode;
             for (int i = 1; i < position; i++) {
