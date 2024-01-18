@@ -34,6 +34,34 @@ public class ReverseBetween {
         return head;
     }
 
+    public ListNode reverseBetweenV2(ListNode head, int left, int right) {
+        if (right - left == 0) {
+            return head;
+        }
+        ListNode lastLeftOutsideRange = left > 1 ? head : null;
+        int leftIndexCounter = 1;
+        while (leftIndexCounter < left - 1) {
+            leftIndexCounter++;
+            lastLeftOutsideRange = lastLeftOutsideRange.next;
+        }
+        ListNode current = lastLeftOutsideRange == null ? head : lastLeftOutsideRange.next;
+        ListNode lastRightInsideRange = current;
+        ListNode next = null;
+        for (int i = 0; i < (right - left + 1); i++) {
+            ListNode previous = current.next;
+            current.next = next;
+            next = current;
+            current = previous;
+        }
+        if (lastLeftOutsideRange != null) {
+            lastLeftOutsideRange.next = next;
+        } else {
+            head = next;
+        }
+        lastRightInsideRange.next = current;
+        return head;
+    }
+
     public static void main(String[] args) {
         ListNode node = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
         ReverseBetween reverseBetween = new ReverseBetween();
@@ -41,6 +69,15 @@ public class ReverseBetween {
         while (reversedNode != null) {
             System.out.println(reversedNode.val);
             reversedNode = reversedNode.next;
+        }
+
+        System.out.println("==========");
+
+        ListNode node2 = new ListNode(3, new ListNode(5));
+        ListNode reversedNode2 = reverseBetween.reverseBetweenV2(node2, 1, 2);
+        while (reversedNode2 != null) {
+            System.out.println(reversedNode2.val);
+            reversedNode2 = reversedNode2.next;
         }
     }
 
