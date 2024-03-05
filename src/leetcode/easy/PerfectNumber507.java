@@ -4,8 +4,16 @@ public class PerfectNumber507 {
 
     public boolean checkPerfectNumber(int num) {
         int sum = 0;
+        if (num % 2 != 0) {
+            return false;
+        }
         for (int i = 1; i <= num / 2; i++) {
-            sum += num % i == 0 ? i : 0;
+            if (num % i == 0) {
+                sum += i;
+            }
+            if (sum > num) {
+                return false;
+            }
         }
         return sum == num;
     }
