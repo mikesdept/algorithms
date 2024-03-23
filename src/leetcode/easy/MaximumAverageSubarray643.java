@@ -3,17 +3,16 @@ package leetcode.easy;
 public class MaximumAverageSubarray643 {
 
     public double findMaxAverage(int[] nums, int k) {
-        int[] prefixSum = new int[nums.length];
-        prefixSum[0] = nums[0];
-        for (int i = 1; i < prefixSum.length; i++) {
-            prefixSum[i] = prefixSum[i - 1] + nums[i];
+        int currentSum = 0;
+        for (int i = 0; i < k; i++) {
+            currentSum += nums[i];
         }
-
-        int maxSum = Integer.MIN_VALUE;
-        for (int i = k - 1; i < prefixSum.length; i++) {
-            maxSum = Math.max(maxSum, prefixSum[i] - prefixSum[i - k + 1] + nums[i - k + 1]);
+        int maxSum = currentSum;
+        for (int i = k; i < nums.length; i++) {
+            currentSum = currentSum - nums[i - k] + nums[i];
+            maxSum = Math.max(maxSum, currentSum);
         }
-        return (double) maxSum / (double) k;
+        return maxSum * 1.0 / k;
     }
 
     public static void main(String[] args) {
