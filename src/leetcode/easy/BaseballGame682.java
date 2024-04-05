@@ -1,29 +1,29 @@
 package leetcode.easy;
 
-import java.util.Stack;
+import java.util.LinkedList;
 
 public class BaseballGame682 {
 
     public int calPoints(String[] operations) {
-        Stack<Integer> stack = new Stack<>();
+        LinkedList<Integer> stack = new LinkedList<>();
         for (int i = 0; i < operations.length; i++) {
             if (operations[i].equals("C")) {
-                stack.pop();
+                stack.pollLast();
             } else if (operations[i].equals("D")) {
-                stack.add(stack.peek() * 2);
+                stack.addLast(stack.peekLast() * 2);
             } else if (operations[i].equals("+")) {
-                int first = stack.pop();
-                int newValue = first + stack.peek();
-                stack.push(first);
-                stack.push(newValue);
+                int first = stack.pollLast();
+                int newValue = first + stack.peekLast();
+                stack.addLast(first);
+                stack.addLast(newValue);
             } else {
-                stack.push(Integer.parseInt(operations[i]));
+                stack.addLast(Integer.parseInt(operations[i]));
             }
         }
 
         int result = 0;
         while (!stack.isEmpty()) {
-            result += stack.pop();
+            result += stack.pollLast();
         }
         return result;
     }
