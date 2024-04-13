@@ -1,6 +1,8 @@
 package leetcode.easy;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 public class LastStoneWeight1046 {
 
@@ -27,10 +29,37 @@ public class LastStoneWeight1046 {
         return stones[stones.length - 1];
     }
 
+    public int lastStoneWeightWithPriorityQueue(int[] stones) {
+        PriorityQueue<Integer> queue = new PriorityQueue<>(new StonesComparator());
+        for (int stone : stones) {
+            queue.add(stone);
+        }
+        while (queue.size() > 1) {
+            int first = queue.poll();
+            int second = queue.poll();
+            int result = Math.abs(first - second);
+            if (result > 0) {
+                queue.add(result);
+            }
+        }
+
+        return queue.isEmpty() ? 0 : queue.poll();
+    }
+
+    class StonesComparator implements Comparator<Integer> {
+
+        public int compare(Integer int1, Integer int2) {
+            return int1 > int2 ? -1 : 1;
+        }
+
+    }
+
     public static void main(String[] args) {
         LastStoneWeight1046 lastStoneWeight1046 = new LastStoneWeight1046();
         System.out.println(lastStoneWeight1046.lastStoneWeight(new int[]{2, 7, 4, 1, 8, 1})); // 1
         System.out.println(lastStoneWeight1046.lastStoneWeight(new int[]{1})); // 1
+        System.out.println(lastStoneWeight1046.lastStoneWeightWithPriorityQueue(new int[]{2, 7, 4, 1, 8, 1})); // 1
+        System.out.println(lastStoneWeight1046.lastStoneWeightWithPriorityQueue(new int[]{1})); // 1
     }
 
 }
