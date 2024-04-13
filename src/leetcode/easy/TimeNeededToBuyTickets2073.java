@@ -32,9 +32,25 @@ public class TimeNeededToBuyTickets2073 {
         return time;
     }
 
+    public int timeRequiredToBuyOptimizedSolution(int[] tickets, int k) {
+        int time = 0;
+        for (int i = 0; i < tickets.length; i++) {
+            if (i == k) {
+                time += tickets[i];
+            } else if (i < k) {
+                time += Math.min(tickets[i], tickets[k]);
+            } else {
+                time += Math.min(tickets[i], tickets[k] - 1);
+            }
+        }
+        return time;
+    }
+
     public static void main(String[] args) {
         TimeNeededToBuyTickets2073 timeNeededToBuyTickets2073 = new TimeNeededToBuyTickets2073();
         System.out.println(timeNeededToBuyTickets2073.timeRequiredToBuy(new int[]{2, 3, 2}, 2)); // 6
         System.out.println(timeNeededToBuyTickets2073.timeRequiredToBuy(new int[]{5, 1, 1, 1}, 0)); // 8
+        System.out.println(timeNeededToBuyTickets2073.timeRequiredToBuyOptimizedSolution(new int[]{2, 3, 2}, 2)); // 6
+        System.out.println(timeNeededToBuyTickets2073.timeRequiredToBuyOptimizedSolution(new int[]{5, 1, 1, 1}, 0)); // 8
     }
 }
