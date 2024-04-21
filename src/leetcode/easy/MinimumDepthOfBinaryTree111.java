@@ -7,20 +7,17 @@ public class MinimumDepthOfBinaryTree111 {
     }
 
     private int getMinDepth(TreeNode node) {
-        if (node != null) {
-            int left = getMinDepth(node.left);
-            int right = getMinDepth(node.right);
-            if (left == 0 && right == 0) {
-                return 1;
-            } else if (left == 0) {
-                return right + 1;
-            } else if (right == 0) {
-                return left + 1;
-            } else {
-                return Math.min(left, right) + 1;
-            }
-        } else {
+        if (node == null) {
             return 0;
+        }
+        int left = getMinDepth(node.left);
+        int right = getMinDepth(node.right);
+        if (left == 0) {
+            return right + 1;
+        } else if (right == 0) {
+            return left + 1;
+        } else {
+            return Math.min(left, right) + 1;
         }
     }
 
