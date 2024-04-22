@@ -2,22 +2,19 @@ package leetcode.medium;
 
 public class MaximumDifferenceBetweenNodeAndAncestor1026 {
 
-    private int difference;
-
     public int maxAncestorDiff(TreeNode root) {
-        difference = Integer.MIN_VALUE;
-        dfs(root, root.val, root.val);
-        return difference;
+        return dfs(root, root.val, root.val);
     }
 
-    private void dfs(TreeNode node, int min, int max) {
-        if (node != null) {
-            int currentMin = Math.min(node.val, min);
-            int currentMax = Math.max(node.val, max);
-            difference = Math.max(difference, currentMax - currentMin);
-            dfs(node.left, currentMin, currentMax);
-            dfs(node.right, currentMin, currentMax);
+    private int dfs(TreeNode node, int min, int max) {
+        if (node == null) {
+            return max - min;
         }
+        min = Math.min(min, node.val);
+        max = Math.max(max, node.val);
+        int leftDifference = dfs(node.left, min, max);
+        int rightDifference = dfs(node.right, min, max);
+        return Math.max(leftDifference, rightDifference);
     }
 
     public static void main(String[] args) {
