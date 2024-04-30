@@ -17,6 +17,30 @@ public class GroupAnagrams49 {
         return result;
     }
 
+    public List<List<String>> groupAnagramsOptimalSolution(String[] strs) {
+        Map<Map<Character, Integer>, List<String>> map = new HashMap<>();
+        for (String word : strs) {
+            Map<Character, Integer> mapKey = new HashMap<>();
+            for (Character character : word.toCharArray()) {
+                mapKey.put(character, mapKey.getOrDefault(character, 0) + 1);
+            }
+            List<String> list;
+            if (map.containsKey(mapKey)) {
+                list = map.get(mapKey);
+            } else {
+                list = new ArrayList<>();
+            }
+            list.add(word);
+            map.put(mapKey, list);
+        }
+
+        List<List<String>> result = new ArrayList<>();
+        for (List<String> group : map.values()) {
+            result.add(group);
+        }
+        return result;
+    }
+
     private String sortString(String string) {
         char[] charArray = string.toCharArray();
         Arrays.sort(charArray);
@@ -39,6 +63,9 @@ public class GroupAnagrams49 {
         System.out.println(groupAnagrams49.groupAnagrams(new String[]{"eat", "tea", "tan", "ate", "nat", "bat"})); // [["eat","tea","ate"],["tan","nat"],["bat"]]
         System.out.println(groupAnagrams49.groupAnagrams(new String[]{""})); // [[]]
         System.out.println(groupAnagrams49.groupAnagrams(new String[]{"a"})); // [["a"]]
+        System.out.println(groupAnagrams49.groupAnagramsOptimalSolution(new String[]{"eat", "tea", "tan", "ate", "nat", "bat"})); // [["eat","tea","ate"],["tan","nat"],["bat"]]
+        System.out.println(groupAnagrams49.groupAnagramsOptimalSolution(new String[]{""})); // [[]]
+        System.out.println(groupAnagrams49.groupAnagramsOptimalSolution(new String[]{"a"})); // [["a"]]
     }
 
 }
