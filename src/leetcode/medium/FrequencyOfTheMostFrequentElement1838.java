@@ -8,22 +8,18 @@ public class FrequencyOfTheMostFrequentElement1838 {
         Arrays.sort(nums);
         int result = 1;
         int left = 0;
-        int right = 0;
         long sum = nums[0];
-        while (right < nums.length) {
-            if (left < right) {
-                sum += nums[right];
-                int numbersCount = right - left + 1;
-                long targetSum = (long) numbersCount * nums[right];
-                long operationsCount = targetSum - sum;
-                if (operationsCount <= k) {
-                    result = numbersCount;
-                } else {
-                    sum -= nums[left];
-                    left++;
-                }
+        for (int right = 1; right < nums.length; right++) {
+            sum += nums[right];
+            int numbersCount = right - left + 1;
+            long targetSum = (long) numbersCount * nums[right];
+            long operationsCount = targetSum - sum;
+            if (operationsCount <= k) {
+                result = numbersCount;
+            } else {
+                sum -= nums[left];
+                left++;
             }
-            right++;
         }
         return result;
     }
