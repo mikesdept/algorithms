@@ -5,22 +5,19 @@ public class SearchInsertPosition35 {
     public int searchInsert(int[] nums, int target) {
         int left = 0;
         int right = nums.length - 1;
-        int index = -1;
-        while (left <= right && index == -1) {
+        int candidate = nums.length;
+        while (left <= right) {
             int middle = (left + right) / 2;
             if (target > nums[middle]) {
                 left = middle + 1;
             } else if (target < nums[middle]) {
+                candidate = middle;
                 right = middle - 1;
             } else {
-                index = middle;
+                return middle;
             }
         }
-        if (index == -1) {
-            return left;
-        } else {
-            return index;
-        }
+        return candidate;
     }
 
     public static void main(String[] args) {
